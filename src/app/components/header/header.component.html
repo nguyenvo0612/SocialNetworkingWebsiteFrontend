@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh Header Bên Trái</title>
+    <style>
+      body {
+        display: flex;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .sidebar {
+        width: 200px; /* Độ rộng của thanh bên trái */
+        background-color: #f8f9fa; /* Màu nền */
+        padding: 20px; /* Khoảng cách bên trong */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+      }
+      .sidebar h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .sidebar ul {
+        list-style-type: none; /* Bỏ dấu chấm */
+        padding: 0; /* Bỏ khoảng cách */
+      }
+      .sidebar li {
+        margin: 15px 0; /* Khoảng cách giữa các mục */
+      }
+      .sidebar a {
+        text-decoration: none; /* Bỏ gạch chân */
+        color: #333; /* Màu chữ */
+      }
+      .sidebar a:hover {
+        color: #007bff; /* Màu chữ khi hover */
+      }
+      main {
+        flex-grow: 1; /* Nội dung chính sẽ chiếm không gian còn lại */
+        padding: 20px; /* Khoảng cách bên trong */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Instagram</h2>
+      <ul>
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">Tìm kiếm</a></li>
+        <li><a href="#">Khám phá</a></li>
+        <li><a href="#">Tin nhắn</a></li>
+        <li><a href="#">Thông báo</a></li>
+        <li><a href="#">Tạo</a></li>
+        <li><a href="#">Trang cá nhân</a></li>
+        <li><a href="#">Xem thêm</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
