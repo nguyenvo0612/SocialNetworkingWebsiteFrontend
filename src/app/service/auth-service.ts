@@ -1,26 +1,47 @@
 // src/app/services/auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private backendUrl = `${environment.BACKEND_URL}`; // Địa chỉ API của bạn
+  private apiUrl = 'http://localhost:8080/api/user';
+  private logoutUrl = 'http://localhost:8080/logout';
 
   constructor(private http: HttpClient) {}
 
-  login(): Observable<any> {
-    return this.http.get(`${this.backendUrl}/auth/login`, {
-      withCredentials: true,
-    });
+  // Hàm để lấy access token
+  getAccessToken(): Observable<{ accessToken: string; refreshToken: string }> {
+    return this.http.get<{ accessToken: string; refreshToken: string }>(
+      this.apiUrl,
+      {
+        withCredentials: true,
+      }
+    );
   }
 
-  getUser(): Observable<any> {
-    return this.http.get(`${this.backendUrl}/auth/user`, {
-      withCredentials: true,
-    });
+  // Hàm giải mã access token
+  decodeToken(token: string): any {
+    try {
+      return jwtDecode(token);
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
+  }
+  getUserInfoFromToken(): any {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      return this.decodeToken(accessToken);
+    }
+    return null;
+  }
+
+  // Hàm đăng xuất
+  logout(): Observable<any> {
+    return this.http.post<any>(this.logoutUrl, {}, { withCredentials: true });
   }
 }

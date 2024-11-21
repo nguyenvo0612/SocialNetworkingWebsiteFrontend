@@ -1,0 +1,11 @@
+.nav-link {
+  color: #000; /* Màu chữ */
+}
+
+.nav-link:hover {
+  background-color: #e9ecef; /* Màu nền khi hover */
+}
+
+h2 {
+  font-size: 24px; /* Kích thước tiêu đề */
+}

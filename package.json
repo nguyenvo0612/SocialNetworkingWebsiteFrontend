@@ -22,6 +22,7 @@
     "@angular/router": "^18.2.7",
     "@auth0/angular-jwt": "^5.2.0",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "jwt-decode": "^4.0.0",
     "login-teamplate-frontend": "file:",
     "primeflex": "^3.3.1",
