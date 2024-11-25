@@ -11,10 +11,18 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CommonModule } from '@angular/common';
+import { CreateProfileComponent } from './pages/user/create-profile/create-profile.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, UserComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    UserComponent,
+    CreateProfileComponent,
+  ],
   imports: [
+    CommonModule,
     BrowserModule,
     InputTextModule,
     ButtonModule,

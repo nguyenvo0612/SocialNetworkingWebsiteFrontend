@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth-service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+export class HeaderComponent implements OnInit {
+  user: any;
+  showAlert: boolean = false;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   onLogout() {
     this.authService.logout().subscribe(
@@ -26,5 +33,27 @@ export class HeaderComponent {
         console.error('Logout failed:', error);
       }
     );
+  }
+
+  ngOnInit(): void {
+    this.authService.getAccessToken().subscribe((response) => {
+      localStorage.setItem('accessToken', response.accessToken);
+      // localStorage.setItem('refreshToken', response.refreshToken);
+      console.log('Access token:', response.accessToken);
+      console.log('Refresh token:', response.refreshToken);
+      this.user = this.authService.getUserInfoFromToken(response.accessToken);
+      this.showAlert = !this.user;
+      if (this.user) {
+        console.log('User info from token:', this.user);
+      } else {
+        console.log('No user info found in token.');
+      }
+    });
+  }
+
+  login() {
+    // Nếu người dùng chưa đăng nhập
+    this.showAlert = true;
+    this.cdr.detectChanges();
   }
 }

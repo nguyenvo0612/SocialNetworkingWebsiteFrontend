@@ -9,3 +9,21 @@
 h2 {
   font-size: 24px; /* Kích thước tiêu đề */
 }
+
+.modal {
+  display: block; /* Hiển thị modal */
+  position: fixed; /* Đặt modal ở vị trí cố định */
+  z-index: 1050; /* Đảm bảo modal nằm trên các phần tử khác */
+  left: 0;
+  top: 0;
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+  height: 100%; /* Chiếm toàn bộ chiều cao */
+  overflow: hidden; /* Ẩn phần thừa */
+  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+}
+
+.modal-dialog {
+  position: relative;
+  margin: auto; /* Căn giữa modal */
+  top: 25%; /* Đặt modal ở giữa màn hình */
+}

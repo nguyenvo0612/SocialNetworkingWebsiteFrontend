@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thanh Header Bên Trái</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <style>
       body {
         display: flex;
@@ -17,56 +21,27 @@
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
       }
       .sidebar h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
+        font-size: 32px; /* Tăng kích thước tiêu đề */
+        margin-bottom: 30px; /* Tăng khoảng cách dưới tiêu đề */
       }
       .sidebar ul {
         list-style-type: none; /* Bỏ dấu chấm */
         padding: 0; /* Bỏ khoảng cách */
       }
       .sidebar li {
-        margin: 15px 0; /* Khoảng cách giữa các mục */
+        margin: 25px 0; /* Tăng khoảng cách giữa các mục */
       }
       .sidebar a {
         text-decoration: none; /* Bỏ gạch chân */
         color: #333; /* Màu chữ */
         display: flex; /* Align items in a row */
         align-items: center; /* Center items vertically */
+        font-size: 20px; /* Tăng kích thước chữ cho liên kết */
       }
-      .sidebar a::before {
-        content: ""; /* Placeholder for icons */
-        display: inline-block;
-        width: 24px; /* Icon width */
-        height: 24px; /* Icon height */
-        margin-right: 10px; /* Space between icon and text */
-        background-size: cover; /* Ensure background image covers the area */
-      }
-      .sidebar a.home::before {
-        background-image: url("path/to/home-icon.png"); /* Replace with actual icon path */
-      }
-      .sidebar a.search::before {
-        background-image: url("path/to/search-icon.png"); /* Replace with actual icon path */
-      }
-      .sidebar a.explore::before {
-        background-image: url("path/to/explore-icon.png"); /* Replace with actual icon path */
-      }
-      .sidebar a.reels::before {
-        background-image: url("path/to/reels-icon.png"); /* Replace with actual icon path */
-      }
-      .sidebar a.messages::before {
-        background-image: url("path/to/messages-icon.png"); /* Replace with actual icon path */
-      }
-      .sidebar a.notifications::before {
-        background-image: url("path/to/notifications-icon.png"); /* Replace with actual icon path */
-      }
-      .sidebar a.create::before {
-        background-image: url("path/to/create-icon.png"); /* Replace with actual icon path */
-      }
-      .sidebar a.profile::before {
-        background-image: url("path/to/profile-icon.png"); /* Replace with actual icon path */
-      }
-      .sidebar a.more::before {
-        background-image: url("path/to/more-icon.png"); /* Replace with actual icon path */
+      .sidebar a img {
+        width: 36px; /* Tăng kích thước hình ảnh */
+        height: 36px; /* Tăng kích thước hình ảnh */
+        margin-right: 20px; /* Khoảng cách giữa hình ảnh và chữ */
       }
       .sidebar a:hover {
         color: #007bff; /* Màu chữ khi hover */
@@ -123,10 +98,15 @@
       class="d-flex flex-column align-items-start p-3 bg-light"
       style="height: 100vh"
     >
-      <h2 class="mb-4" style="margin-left: 20px">Instagram</h2>
+      <h2 class="mb-4" style="margin-left: 20px">Instago 2</h2>
+
+      <div *ngIf="!user" class="alert alert-warning" role="alert">
+        Người dùng chưa đăng nhập.
+      </div>
+
       <ul class="nav flex-column w-100">
         <li class="nav-item">
-          <a class="nav-link" href="#" onclick="toggleSearch()"
+          <a class="nav-link" href="/home"
             ><i class="bi bi-house-door" style="margin-right: 15px"></i> Trang
             chủ</a
           >
@@ -159,10 +139,18 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><i class="bi bi-person" style="margin-right: 15px"></i> Trang cá
-            nhân</a
-          >
+          <a class="nav-link" href="/profile">
+            <img
+              *ngIf="user?.picture; else defaultIcon"
+              [src]="user?.picture"
+              class="img-fluid rounded-circle"
+              style="width: 16px; height: 16px; margin-right: 15px"
+            />
+            <ng-template #defaultIcon>
+              <i class="bi bi-person" style="margin-right: 15px"></i>
+            </ng-template>
+            Trang cá nhân
+          </a>
         </li>
       </ul>
       <div class="search-container" id="searchContainer">

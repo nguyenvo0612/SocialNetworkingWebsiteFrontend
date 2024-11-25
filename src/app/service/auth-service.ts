@@ -32,10 +32,9 @@ export class AuthService {
       return null;
     }
   }
-  getUserInfoFromToken(): any {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-      return this.decodeToken(accessToken);
+  getUserInfoFromToken(token: string): any {
+    if (token) {
+      return this.decodeToken(token);
     }
     return null;
   }

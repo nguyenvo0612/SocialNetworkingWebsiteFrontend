@@ -1,0 +1,15 @@
+.title {
+  text-align: center; /* Center the title */
+  margin-bottom: 20px; /* Space below the title */
+  font-size: 24px; /* Font size */
+  color: #333; /* Text color */
+}
+
+.avatar-preview {
+  display: block; /* Centering */
+  margin: 0 auto; /* Centering */
+  border-radius: 50%; /* Make it circular */
+  width: 100px; /* Ensure width is consistent */
+  height: 100px; /* Ensure height is consistent */
+  object-fit: cover; /* Maintain aspect ratio */
+}
