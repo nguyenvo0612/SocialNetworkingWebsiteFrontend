@@ -1,0 +1,15 @@
+.square-img {
+  width: 100%; /* Chiếm hết chiều rộng container */
+  aspect-ratio: 1 / 1; /* Tạo tỷ lệ 1:1 để chiều cao bằng chiều rộng */
+  object-fit: cover; /* Cắt ảnh vừa với khung mà không méo mó */
+  margin: 0;
+  padding: 0;
+}
+
+.post {
+  margin: 0px; /* Giảm khoảng cách giữa các ảnh */
+  padding: 0; /* Bỏ padding để ảnh gần nhau hơn */
+}
+.postsave {
+  border-top: 10 solid black;
+}

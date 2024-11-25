@@ -27,3 +27,7 @@ h2 {
   margin: auto; /* Căn giữa modal */
   top: 25%; /* Đặt modal ở giữa màn hình */
 }
+
+.header {
+  position: fixed; /* Giữ thanh header cố định ở đầu */
+}

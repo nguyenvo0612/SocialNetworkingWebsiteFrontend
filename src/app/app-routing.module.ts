@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/user/home/home.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateProfileComponent } from './pages/user/create-profile/create-profile.component';
+import { ProfileComponent } from './pages/user/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
   {
     path: 'create_profile',
     component: CreateProfileComponent,
+  },
+
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
 ];
 
