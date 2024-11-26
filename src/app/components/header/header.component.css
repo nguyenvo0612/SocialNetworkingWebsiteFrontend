@@ -30,4 +30,11 @@ h2 {
 
 .header {
   position: fixed; /* Giữ thanh header cố định ở đầu */
+  top: 0; /* Đặt thanh header ở trên cùng */
+  left: 0; /* Đặt thanh header ở bên trái */
+  width: 250px; /* Chiếm toàn bộ chiều rộng */
+  z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
+  background-color: #f8f9fa; /* Màu nền cho thanh header */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho thanh header */
+  border-right: 1px solid #d3d3d3; /* Bẏt bóng cho thanh header */
 }
