@@ -1,0 +1,29 @@
+<div class="container mt-6">
+  <div class="modal-header">
+    <h5 class="modal-title">Tạo bài viết mới</h5>
+  </div>
+
+  <div class="modal-body text-center">
+    <input
+      type="text"
+      placeholder="Bạn đang nghĩ gì?"
+      class="form-control input-text"
+    />
+    <div class="upload-area">
+      <p>Kéo ảnh và video vào đây</p>
+      <input
+        type="file"
+        id="imageUpload"
+        class="form-control-file"
+        accept="image/*"
+      />
+      <button
+        class="btn btn-primary mt-3"
+        onclick="document.getElementById('imageUpload').click();"
+      >
+        Chọn từ máy tính
+      </button>
+    </div>
+    <button class="btn btn-secondary mt-3">Đăng</button>
+  </div>
+</div>

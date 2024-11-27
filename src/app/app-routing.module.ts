@@ -6,6 +6,7 @@ import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateProfileComponent } from './pages/user/create-profile/create-profile.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
+import { CreatePostComponent } from './pages/user/create-post/create-post.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+
+  {
+    path: 'new_post',
+    component: CreatePostComponent,
   },
 ];
 

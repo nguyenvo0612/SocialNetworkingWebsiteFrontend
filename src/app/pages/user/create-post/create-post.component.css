@@ -1,0 +1,40 @@
+.modal-body {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f8f9fa; /* Màu nền sáng */
+}
+
+.form-control-file {
+  display: none; /* Ẩn input file */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Màu nút */
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Màu nút Đăng */
+  border: none;
+}
+
+.upload-area {
+  border: 2px dashed #ccc; /* Đường viền kiểu dashed */
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #f0f0f0; /* Màu nền sáng */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px; /* Khoảng cách dưới */
+}
+.input-text {
+  border: 1px dashed #ccc; /* Đường viền kiểu dashed */
+  background-color: #f0f0f0; /* Màu nền sáng */
+  margin-bottom: 20px; /* Khoảng cách dưới */
+}
+
+.upload-area p {
+  margin-bottom: 20px; /* Khoảng cách dưới cho văn bản */
+}
