@@ -1,0 +1,23 @@
+<div class="message-container">
+  <div class="messages">
+    <div
+      class="message"
+      *ngFor="let message of messages"
+      [ngClass]="{ sent: message.isSent, received: !message.isSent }"
+    >
+      <div class="message-content">
+        <p>{{ message.text }}</p>
+        <span class="message-time">{{ message.time }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="message-input">
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      placeholder="Type a message..."
+    />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>

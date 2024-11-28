@@ -13,6 +13,7 @@ import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { CreateProfileComponent } from './pages/user/create-profile/create-profile.component';
+import { ChatListComponent } from './pages/user/chat-list/chat-list.component';
 
 @NgModule({
   declarations: [
