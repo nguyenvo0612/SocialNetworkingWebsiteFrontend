@@ -74,6 +74,38 @@ export class MessageBoxComponent implements OnInit {
         content: 'Sounds great! Let’s catch up soon.',
         sent_at: '10:05 AM',
       },
+      {
+        conversations_id: 1,
+        user1_id: 1,
+        user2_id: 2,
+        sender_id: 1,
+        content: 'How are you?',
+        sent_at: '10:02 AM',
+      },
+      {
+        conversations_id: 1,
+        user1_id: 1,
+        user2_id: 2,
+        sender_id: 2,
+        content: 'I am good, thanks! And you?',
+        sent_at: '10:03 AM',
+      },
+      {
+        conversations_id: 1,
+        user1_id: 1,
+        user2_id: 2,
+        sender_id: 1,
+        content: 'Just working on some projects.',
+        sent_at: '10:04 AM',
+      },
+      {
+        conversations_id: 1,
+        user1_id: 1,
+        user2_id: 2,
+        sender_id: 2,
+        content: 'Sounds great! Let’s catch up soon.',
+        sent_at: '10:05 AM',
+      },
     ];
   }
 
