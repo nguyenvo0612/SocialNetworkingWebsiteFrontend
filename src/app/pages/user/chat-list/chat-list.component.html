@@ -1,10 +1,8 @@
 <p>chat-list works!</p>
 <div class="chat-list">
-  <div class="chat-item" *ngFor="let chat of chats">
-    <div class="chat-box" href="/message-box">
-      <p class="chat-user">{{ chat.user }}</p>
-      <p class="chat-message">{{ chat.message }}</p>
-      <span class="chat-time">{{ chat.time }}</span>
-    </div>
+  <div class="chat-item" *ngFor="let chat of chats" (click)="selectChat(chat)">
+    <p class="chat-user">{{ chat.user }}</p>
+    <p class="chat-message">{{ chat.message }}</p>
+    <span class="chat-time">{{ chat.time }}</span>
   </div>
 </div>

@@ -1,0 +1,30 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.message {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  max-width: 70%; /* Limit message width */
+}
+.message-sent {
+  align-self: flex-end; /* Align sent messages to the right */
+  background-color: #d1e7dd; /* Light green for sent messages */
+  border-radius: 10px;
+  padding: 10px;
+}
+.message-received {
+  align-self: flex-start; /* Align received messages to the left */
+  background-color: #f8d7da; /* Light red for received messages */
+  border-radius: 10px;
+  padding: 10px;
+}
+.message-time {
+  font-size: 0.8em;
+  text-align: right;
+}
+.container {
+  margin-left: 300px;
+}
