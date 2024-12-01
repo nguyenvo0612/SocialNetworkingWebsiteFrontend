@@ -13,6 +13,9 @@
 .postsave {
   border-top: 10 solid black;
 }
-.container {
-  margin-left: 300px;
+
+body {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 20%;
 }

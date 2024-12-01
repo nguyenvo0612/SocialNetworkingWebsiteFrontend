@@ -3,14 +3,17 @@
   font-size: 16px;
 }
 .nav-item .nav-link {
-  margin-top: 12px;
+  margin-top: 11px;
+}
+.nav-link .bi {
+  font-size: 20px;
 }
 .nav-link:hover {
   background-color: #e9ecef; /* Màu nền khi hover */
 }
 
 h2 {
-  font-size: 24px; /* Kích thước tiêu đề */
+  font-size: 26px; /* Kích thước tiêu đề */
 }
 
 .modal {
