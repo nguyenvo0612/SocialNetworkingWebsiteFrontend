@@ -1,17 +1,20 @@
 // src/app/services/auth.service.ts
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/user';
-  private logoutUrl = 'http://localhost:8080/logout';
+  backendUrl = environment.BACKEND_URL;
+  private apiUrl = `${this.backendUrl}/auth/callback`;
+  private logoutUrl = `${this.backendUrl}/logout`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   // Hàm để lấy access token
   getAccessToken(): Observable<{ accessToken: string; refreshToken: string }> {
@@ -32,6 +35,7 @@ export class AuthService {
       return null;
     }
   }
+
   getUserInfoFromToken(token: string): any {
     if (token) {
       return this.decodeToken(token);
@@ -42,5 +46,43 @@ export class AuthService {
   // Hàm đăng xuất
   logout(): Observable<any> {
     return this.http.post<any>(this.logoutUrl, {}, { withCredentials: true });
+  }
+
+  getMailUser(token: string): any {
+    this.getAccessToken().subscribe((response) => {
+      token = response.accessToken;
+      const decodedToken = this.decodeToken(token);
+      if (decodedToken && decodedToken.sub) {
+        return decodedToken.sub;
+      }
+    });
+  }
+  getUserIdByMail(mail: string): Observable<any> {
+    return this.http.get<any>(
+      `${this.backendUrl}/api/user/find-userid/${mail}`
+    );
+  }
+
+  handleAuthCallback() {
+    // Kiểm tra xem có token trong localStorage không
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      const userInfo = this.getUserInfoFromToken(token); // Lấy thông tin người dùng
+      console.log('User info from token:', userInfo);
+      this.router.navigate(['/']); // Chuyển hướng về trang chính
+    } else {
+      // Nếu chưa có token, gọi API để lấy token
+      this.getAccessToken().subscribe(
+        (response) => {
+          localStorage.setItem('accessToken', response.accessToken);
+          const userInfo = this.getUserInfoFromToken(response.accessToken); // Lấy thông tin người dùng
+          console.log('User info from token:', userInfo);
+          this.router.navigate(['/']); // Chuyển hướng về trang chính
+        },
+        (error) => {
+          console.error('Error fetching access token:', error);
+        }
+      );
+    }
   }
 }

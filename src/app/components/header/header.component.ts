@@ -51,9 +51,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  login() {
-    // Nếu người dùng chưa đăng nhập
-    this.showAlert = true;
-    this.cdr.detectChanges();
-  }
+  // login() {
+  //   // Nếu người dùng chưa đăng nhập
+  //   this.showAlert = true;
+  //   this.cdr.detectChanges();
+  // }
 }
