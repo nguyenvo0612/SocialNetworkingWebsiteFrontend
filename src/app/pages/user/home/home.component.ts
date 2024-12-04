@@ -21,16 +21,10 @@ export class HomeComponent implements OnInit {
   userId: any;
   email: any;
   ngOnInit(): void {
-    this.email = this.authService.getMailUser;
-    console.log('sdfsdfdsfsdfasdfsdfsf', this.email);
-    // this.authService.getUserIdByMail(this.email).subscribe((userId) => {
-    //   this.userId = userId;
-    //   this.profileService
-    //     .findProfileByUserId(this.userId)
-    //     .subscribe((response) => {
-    //       this.profile = response;
-    //       console.log(this.profile);
-    //     });
-    // });
+    this.authService.getAccessToken().subscribe((response) => {
+      this.email = this.authService.getMailUser(response.accessToken);
+      this.userId = this.authService.getUserIdByMail(this.email);
+      console.log(this.userId);
+    });
   }
 }

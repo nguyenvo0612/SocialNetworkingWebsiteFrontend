@@ -49,18 +49,16 @@ export class AuthService {
   }
 
   getMailUser(token: string): any {
-    this.getAccessToken().subscribe((response) => {
-      token = response.accessToken;
-      const decodedToken = this.decodeToken(token);
-      if (decodedToken && decodedToken.sub) {
-        return decodedToken.sub;
-      }
-    });
+    const decodedToken = this.decodeToken(token);
+    if (decodedToken && decodedToken.sub) {
+      return decodedToken.sub;
+    }
   }
   getUserIdByMail(mail: string): Observable<any> {
-    return this.http.get<any>(
+    const respronse = this.http.get<any>(
       `${this.backendUrl}/api/user/find-userid/${mail}`
     );
+    return respronse;
   }
 
   handleAuthCallback() {
