@@ -22,22 +22,49 @@
 }
 
 .upload-area {
-  border: 2px dashed #ccc; /* Đường viền kiểu dashed */
-  padding: 40px;
-  border-radius: 10px;
-  background-color: #f0f0f0; /* Màu nền sáng */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px; /* Khoảng cách dưới */
-}
-.input-text {
-  border: 1px dashed #ccc; /* Đường viền kiểu dashed */
-  background-color: #f0f0f0; /* Màu nền sáng */
-  margin-bottom: 20px; /* Khoảng cách dưới */
+  border: 2px dashed #007bff; /* Dashed border for upload area */
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #f8f9fa; /* Light background color */
 }
 
 .upload-area p {
-  margin-bottom: 20px; /* Khoảng cách dưới cho văn bản */
+  margin: 0;
+  font-weight: bold;
+}
+
+.image-preview {
+  margin-top: 20px;
+}
+
+.image-preview h5 {
+  margin-bottom: 10px;
+}
+
+.image-preview .img-thumbnail {
+  width: 100px; /* Set a fixed width for thumbnails */
+  height: 100px; /* Set a fixed height for thumbnails */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
+  margin-bottom: 5px; /* Space between image and button */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ced4da; /* Border for thumbnails */
+  transition: transform 0.2s; /* Smooth scaling effect */
+}
+
+.image-preview .img-thumbnail:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+.image-container {
+  display: flex; /* Use flexbox for horizontal layout */
+  flex-wrap: wrap; /* Allow wrapping to the next line if needed */
+  gap: 10px; /* Space between images */
+}
+
+.image-item {
+  display: flex;
+  flex-direction: column; /* Stack image and button vertically */
+  align-items: center; /* Center align items */
 }

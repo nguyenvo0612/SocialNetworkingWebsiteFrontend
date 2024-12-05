@@ -16,6 +16,8 @@
         id="imageUpload"
         class="form-control-file"
         accept="image/*"
+        multiple
+        (change)="onFilesSelected($event)"
       />
       <button
         class="btn btn-primary mt-3"
@@ -23,6 +25,20 @@
       >
         Chọn từ máy tính
       </button>
+    </div>
+    <div *ngIf="selectedImages.length > 0" class="image-preview">
+      <h5>Ảnh đã chọn:</h5>
+      <div class="image-container">
+        <div
+          *ngFor="let image of selectedImages; let i = index"
+          class="image-item"
+        >
+          <img [src]="image" class="img-thumbnail" />
+          <button class="btn btn-danger btn-sm" (click)="removeImage(i)">
+            Xóa
+          </button>
+        </div>
+      </div>
     </div>
     <button class="btn btn-secondary mt-3">Đăng</button>
   </div>
