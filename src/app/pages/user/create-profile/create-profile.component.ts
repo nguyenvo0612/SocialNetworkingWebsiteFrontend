@@ -9,6 +9,7 @@ interface ProfileDTO {
   realName: string;
   bio: string;
   avatar: string;
+  linkWebsite: string;
   userId: number;
 }
 
@@ -25,6 +26,7 @@ export class CreateProfileComponent implements OnInit {
     realName: '',
     bio: '',
     avatar: '',
+    linkWebsite: '',
     userId: 0,
   };
 

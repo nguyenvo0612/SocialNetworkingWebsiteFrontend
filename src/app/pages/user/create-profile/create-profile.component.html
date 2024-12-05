@@ -12,7 +12,7 @@
               <img
                 [src]="previewUrl || 'https://via.placeholder.com/150'"
                 class="rounded-circle avatar-preview"
-                (click)="fileInput.click()"
+                (click)="fileInput?.click()"
               />
               <input
                 #fileInput
@@ -26,10 +26,34 @@
               >
             </div>
 
+            <!-- Nickname -->
+            <div class="form-group">
+              <label for="nickname">Nickname</label>
+              <input
+                placeholder="@account_user"
+                type="text"
+                id="nickName"
+                name="nickName"
+                class="form-control"
+                [(ngModel)]="profile.nickname"
+                required
+              />
+              <div
+                *ngIf="
+                  profileForm.controls['nickName']?.invalid &&
+                  profileForm.controls['nickName']?.touched
+                "
+                class="text-danger"
+              >
+                Vui lòng nhập nickname.
+              </div>
+            </div>
+
             <!-- Real Name -->
             <div class="form-group">
-              <label for="realName">Tên thật</label>
+              <label for="realName">Tên hiển thị</label>
               <input
+                placeholder="Nguyễn Văn A"
                 type="text"
                 id="realName"
                 name="realName"
@@ -37,19 +61,15 @@
                 [(ngModel)]="profile.realName"
                 required
               />
-            </div>
-
-            <!-- Nickname -->
-            <div class="form-group">
-              <label for="nickname">Biệt danh</label>
-              <input
-                type="text"
-                id="nickname"
-                name="nickname"
-                class="form-control"
-                [(ngModel)]="profile.nickname"
-                required
-              />
+              <div
+                *ngIf="
+                  profileForm.controls['realName']?.invalid &&
+                  profileForm.controls['realName']?.touched
+                "
+                class="text-danger"
+              >
+                Vui lòng nhập tên hiển thị
+              </div>
             </div>
 
             <!-- Bio -->
@@ -62,6 +82,19 @@
                 rows="3"
                 [(ngModel)]="profile.bio"
               ></textarea>
+            </div>
+
+            <!-- linkWebsite -->
+            <div class="form-group">
+              <label for="nickname">Website</label>
+              <input
+                type="text"
+                id="linkWebsite"
+                name="linkWebsite"
+                class="form-control"
+                [(ngModel)]="profile.linkWebsite"
+                required
+              />
             </div>
 
             <div class="text-center mt-4">
