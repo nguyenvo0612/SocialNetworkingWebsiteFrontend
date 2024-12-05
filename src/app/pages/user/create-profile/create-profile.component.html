@@ -1,60 +1,81 @@
-<div class="container">
-  <h2 class="title">Thiết lập tài khoản Instago 2</h2>
-  <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
-    <div class="form-group">
-      <img
-        [src]="
-          'https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg'
-        "
-        alt="Avatar"
-        class="avatar-preview"
-        (click)="fileInput.click()"
-      />
-      <input
-        type="file"
-        id="avatar"
-        name="avatar"
-        class="form-control"
-        #fileInput
-        (change)="onFileSelected($event)"
-        style="display: none"
-      />
-      <label for="realname">Tên thật</label>
-      <input
-        type="text"
-        id="realname"
-        name="realname"
-        class="form-control"
-        required
-        [(ngModel)]="profile.realname"
-      />
-    </div>
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">Thiết lập tài Khoản Instago</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+            <!-- Avatar Preview -->
+            <div class="text-center mb-4">
+              <img
+                [src]="previewUrl || 'https://via.placeholder.com/150'"
+                class="rounded-circle avatar-preview"
+                (click)="fileInput.click()"
+              />
+              <input
+                #fileInput
+                type="file"
+                class="form-control d-none"
+                (change)="onFileSelected($event)"
+                accept="image/*"
+              />
+              <small class="text-muted d-block mt-2"
+                >Click vào ảnh để thay đổi avatar</small
+              >
+            </div>
 
-    <div class="form-group">
-      <label for="nickname">Biệt danh</label>
-      <input
-        type="text"
-        id="nickname"
-        name="nickname"
-        class="form-control"
-        required
-        [(ngModel)]="profile.nickname"
-      />
-    </div>
+            <!-- Real Name -->
+            <div class="form-group">
+              <label for="realName">Tên thật</label>
+              <input
+                type="text"
+                id="realName"
+                name="realName"
+                class="form-control"
+                [(ngModel)]="profile.realName"
+                required
+              />
+            </div>
 
-    <div class="form-group">
-      <label for="bio">Tiểu sử</label>
-      <textarea
-        id="bio"
-        name="bio"
-        class="form-control"
-        rows="3"
-        [(ngModel)]="profile.bio"
-      ></textarea>
-    </div>
+            <!-- Nickname -->
+            <div class="form-group">
+              <label for="nickname">Biệt danh</label>
+              <input
+                type="text"
+                id="nickname"
+                name="nickname"
+                class="form-control"
+                [(ngModel)]="profile.nickname"
+                required
+              />
+            </div>
 
-    <button type="submit" class="btn btn-primary" style="margin-top: 20px">
-      Xác nhận
-    </button>
-  </form>
+            <!-- Bio -->
+            <div class="form-group">
+              <label for="bio">Tiểu sử</label>
+              <textarea
+                id="bio"
+                name="bio"
+                class="form-control"
+                rows="3"
+                [(ngModel)]="profile.bio"
+              ></textarea>
+            </div>
+
+            <div class="text-center mt-4">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!profileForm.form.valid"
+              >
+                Xác nhận
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -14,4 +14,8 @@ export default class ProfileService {
   findProfileByUserId(userId: number): Observable<any> {
     return this.http.get(`${this.backendUrl}/api/profile/find/${userId}`);
   }
+
+  createProfile(profileDTO: any): Observable<any> {
+    return this.http.post(`${this.backendUrl}/api/profile/create`, profileDTO);
+  }
 }
