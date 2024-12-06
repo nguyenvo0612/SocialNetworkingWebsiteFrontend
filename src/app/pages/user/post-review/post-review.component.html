@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <h5>Bạn đang nghĩ gì?</h5>
+  <textarea
+    [(ngModel)]="postContent"
+    class="form-control"
+    rows="3"
+    placeholder="Nhập nội dung bài viết..."
+  ></textarea>
+
+  <h5 class="mt-4">Ảnh đã chọn:</h5>
+  <div
+    id="carouselExampleIndicators"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <div
+        *ngFor="let image of selectedImages; let i = index"
+        [ngClass]="{ active: i === 0 }"
+        class="carousel-item"
+      >
+        <div class="image-item">
+          <img [src]="image" class="d-block w-100" alt="Selected Image" />
+          <button
+            class="btn btn-danger btn-sm delete-button"
+            (click)="removeImage(i)"
+          >
+            Xóa
+          </button>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <button class="btn btn-primary mt-4" (click)="submitPost()">Đăng</button>
+</div>

@@ -7,9 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateProfileComponent } from './pages/user/create-profile/create-profile.component';
+import { CommonModule } from '@angular/common';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AccountComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -17,6 +19,7 @@ import { CreateProfileComponent } from './pages/user/create-profile/create-profi
     FormsModule,
     BrowserAnimationsModule,
     HeaderComponent,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

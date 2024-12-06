@@ -1,0 +1,35 @@
+.container {
+  margin-left: 300px;
+}
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-item {
+  position: relative;
+}
+
+.image-item img {
+  width: 100%;
+  height: auto;
+}
+
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.btn-danger {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.carousel-item img {
+  max-height: 400px;
+  object-fit: cover;
+}

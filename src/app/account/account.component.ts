@@ -3,10 +3,11 @@ import { AuthService } from '../service/auth-service';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.css'],
 })
-export class UserComponent implements OnInit {
-  user: any;
+export class AccountComponent implements OnInit {
+  account: any;
 
   constructor(private authService: AuthService) {}
 
@@ -16,9 +17,11 @@ export class UserComponent implements OnInit {
       // localStorage.setItem('refreshToken', response.refreshToken);
       console.log('Access token:', response.accessToken);
       console.log('Refresh token:', response.refreshToken);
-      this.user = this.authService.getUserInfoFromToken(response.accessToken);
-      if (this.user) {
-        console.log('User info from token:', this.user);
+      this.account = this.authService.getUserInfoFromToken(
+        response.accessToken
+      );
+      if (this.account) {
+        console.log('User info from token:', this.account);
       } else {
         console.log('No user info found in token.');
       }

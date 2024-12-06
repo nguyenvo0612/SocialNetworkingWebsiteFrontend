@@ -1,0 +1,12 @@
+<div *ngIf="account" class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">Welcome, {{ account.lastName }}!</h1>
+      <h2 class="card-subtitle mb-2 text-muted">Account Information</h2>
+      <p class="card-text">
+        <strong>Name:</strong> {{ account.firstName }} {{ account.lastName }}
+      </p>
+      <p class="card-text"><strong>Email:</strong> {{ account.sub }}</p>
+    </div>
+  </div>
+</div>
