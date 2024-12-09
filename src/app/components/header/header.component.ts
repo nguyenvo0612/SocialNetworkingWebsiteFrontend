@@ -37,12 +37,17 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getAccessToken().subscribe((response) => {
-      localStorage.setItem('accessToken', response.accessToken);
-      // localStorage.setItem('refreshToken', response.refreshToken);
-      console.log('Access token:', response.accessToken);
-      console.log('Refresh token:', response.refreshToken);
-      this.user = this.authService.getUserInfoFromToken(response.accessToken);
-      this.showAlert = !this.user;
+      if (response.redirectUrl) {
+        // Chuyển hướng đến trang nhập mã xác minh
+        this.router.navigate([response.redirectUrl]);
+      } else if (response.accessToken) {
+        localStorage.setItem('accessToken', response.accessToken);
+        // localStorage.setItem('refreshToken', response.refreshToken);
+        console.log('Access token:', response.accessToken);
+        console.log('Refresh token:', response.refreshToken);
+        this.user = this.authService.getUserInfoFromToken(response.accessToken);
+        this.showAlert = !this.user;
+      }
       if (this.user) {
         console.log('User info from token:', this.user);
       } else {

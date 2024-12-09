@@ -10,6 +10,8 @@ import { CreatePostComponent } from './pages/user/create-post/create-post.compon
 import { ChatListComponent } from './pages/user/chat-list/chat-list.component';
 import { MessageBoxComponent } from './pages/user/message-box/message-box.component';
 import { PostReviewComponent } from './pages/user/post-review/post-review.component';
+import { VerifyAccountComponent } from './pages/user/verify-account/verify-account.component';
+import { VerifySuccessComponent } from './pages/user/verify-success/verify-success.component';
 
 const routes: Routes = [
   {
@@ -56,6 +58,14 @@ const routes: Routes = [
   {
     path: 'message-box',
     component: MessageBoxComponent,
+  },
+  {
+    path: 'success',
+    component: VerifySuccessComponent,
+  },
+  {
+    path: 'verify/:email',
+    component: VerifyAccountComponent,
   },
 ];
 

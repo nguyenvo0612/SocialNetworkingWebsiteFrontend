@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authService.handleAuthCallback();
+    this.authService.fetchAccessToken();
   }
 
   onSubmit() {

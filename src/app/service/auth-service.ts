@@ -11,19 +11,16 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
   backendUrl = environment.BACKEND_URL;
-  private apiUrl = `${this.backendUrl}/auth/callback`;
+  private apiUrl = `${this.backendUrl}/auth/api`;
   private logoutUrl = `${this.backendUrl}/logout`;
-
+  private tokenKey = 'accessToken';
   constructor(private http: HttpClient, private router: Router) {}
 
   // Hàm để lấy access token
-  getAccessToken(): Observable<{ accessToken: string; refreshToken: string }> {
-    return this.http.get<{ accessToken: string; refreshToken: string }>(
-      this.apiUrl,
-      {
-        withCredentials: true,
-      }
-    );
+  getAccessToken(): Observable<any> {
+    return this.http.get<any>(this.apiUrl, {
+      withCredentials: true,
+    });
   }
 
   // Hàm giải mã access token
@@ -82,5 +79,29 @@ export class AuthService {
         }
       );
     }
+  }
+  fetchAccessToken(): void {
+    this.http
+      .get<{ accessToken: string }>('http://localhost:8080/api/auth/token')
+      .subscribe({
+        next: (response) => {
+          const token = response.accessToken;
+          if (token) {
+            localStorage.setItem(this.tokenKey, token); // Lưu vào localStorage
+            console.log('Access Token saved successfully:', token);
+          }
+        },
+        error: (err) => {
+          console.error('Error fetching access token:', err);
+        },
+      });
+  }
+
+  getAccessToken2(): string | null {
+    return localStorage.getItem(this.tokenKey); // Lấy token từ localStorage
+  }
+
+  clearAccessToken(): void {
+    localStorage.removeItem(this.tokenKey); // Xóa token khi logout
   }
 }

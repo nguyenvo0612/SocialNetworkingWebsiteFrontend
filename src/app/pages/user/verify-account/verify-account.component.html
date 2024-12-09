@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="center">
+    <p>Please verify your email address.</p>
+    <form (ngSubmit)="verifyAccount()">
+      <div class="form-group">
+        <label for="verificationCode">Enter Verification Code:</label>
+        <input
+          type="text"
+          id="verificationCode"
+          class="form-control"
+          [(ngModel)]="verificationCode"
+          name="verificationCode"
+          placeholder="Enter code here"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Verify</button>
+    </form>
+  </div>
+</div>
