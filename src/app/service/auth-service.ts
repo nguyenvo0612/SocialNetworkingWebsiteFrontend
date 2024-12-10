@@ -80,28 +80,5 @@ export class AuthService {
       );
     }
   }
-  fetchAccessToken(): void {
-    this.http
-      .get<{ accessToken: string }>('http://localhost:8080/api/auth/token')
-      .subscribe({
-        next: (response) => {
-          const token = response.accessToken;
-          if (token) {
-            localStorage.setItem(this.tokenKey, token); // Lưu vào localStorage
-            console.log('Access Token saved successfully:', token);
-          }
-        },
-        error: (err) => {
-          console.error('Error fetching access token:', err);
-        },
-      });
-  }
 
-  getAccessToken2(): string | null {
-    return localStorage.getItem(this.tokenKey); // Lấy token từ localStorage
-  }
-
-  clearAccessToken(): void {
-    localStorage.removeItem(this.tokenKey); // Xóa token khi logout
-  }
 }
