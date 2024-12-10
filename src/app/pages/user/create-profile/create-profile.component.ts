@@ -3,14 +3,15 @@ import { Router } from '@angular/router';
 import ProfileService from '../profile/profile.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../service/auth-service';
 
 interface ProfileDTO {
-  nickname: string;
+  nickName: string;
   realName: string;
   bio: string;
   avatar: string;
   linkWebsite: string;
-  userId: number;
+  accountId: number;
 }
 
 @Component({
@@ -22,22 +23,25 @@ interface ProfileDTO {
 })
 export class CreateProfileComponent implements OnInit {
   profile: ProfileDTO = {
-    nickname: '',
+    nickName: '',
     realName: '',
     bio: '',
     avatar: '',
     linkWebsite: '',
-    userId: 0,
+    accountId: 0,
   };
+  user: any;
 
   selectedFile: File | null = null;
   previewUrl: string | null = null;
 
-  constructor(private profileService: ProfileService, private router: Router) {}
+  constructor(
+    private profileService: ProfileService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  ngOnInit() {
-    // Logic to initialize the component if needed
-  }
+  ngOnInit() {}
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -52,20 +56,25 @@ export class CreateProfileComponent implements OnInit {
   }
 
   async onSubmit() {
-    if (this.selectedFile) {
-      const base64 = await this.convertFileToBase64(this.selectedFile);
-      this.profile.avatar = base64;
-    }
-
-    this.profileService.createProfile(this.profile).subscribe(
-      (response) => {
-        console.log('Profile created successfully', response);
-        this.router.navigate(['/profile']); // Chuyển hướng sau khi tạo thành công
-      },
-      (error) => {
-        console.error('Error creating profile', error);
+    this.authService.getAccessToken().subscribe(async (response) => {
+      this.user = this.authService.getUserInfoFromToken(response.accessToken);
+      this.profile.accountId = this.user.accountId;
+      console.log('create profile , accountId:', this.profile.accountId);
+      if (this.selectedFile) {
+        const base64 = await this.convertFileToBase64(this.selectedFile);
+        this.profile.avatar = base64;
       }
-    );
+
+      this.profileService.createProfile(this.profile).subscribe(
+        (response) => {
+          console.log('Profile created successfully', response);
+          this.router.navigate(['/profile']); // Chuyển hướng sau khi tạo thành công
+        },
+        (error) => {
+          console.error('Error creating profile', error);
+        }
+      );
+    });
   }
 
   private convertFileToBase64(file: File): Promise<string> {

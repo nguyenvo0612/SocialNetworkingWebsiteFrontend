@@ -3,14 +3,14 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          <h3 class="text-center">Thiết lập tài Khoản Instago</h3>
+          <h3 class="text-center">Chỉnh sửa trang cá nhân</h3>
         </div>
         <div class="card-body">
-          <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+          <form #profileForm="ngForm" (ngSubmit)="onSubmit()">
             <!-- Avatar Preview -->
             <div class="text-center mb-4">
               <img
-                [src]="previewUrl || 'https://via.placeholder.com/150'"
+                [src]="profile.avatar || 'https://via.placeholder.com/150'"
                 class="rounded-circle avatar-preview"
                 (click)="fileInput?.click()"
               />
@@ -102,7 +102,7 @@
                 class="btn btn-primary"
                 [disabled]="!profileForm.form.valid"
               >
-                Hoàn tất
+                Xác nhận
               </button>
             </div>
           </form>

@@ -12,6 +12,7 @@ import { MessageBoxComponent } from './pages/user/message-box/message-box.compon
 import { PostReviewComponent } from './pages/user/post-review/post-review.component';
 import { VerifyAccountComponent } from './pages/user/verify-account/verify-account.component';
 import { VerifySuccessComponent } from './pages/user/verify-success/verify-success.component';
+import { EditProfileComponent } from './pages/user/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: 'create_profile',
     component: CreateProfileComponent,
+  },
+
+  {
+    path: 'edit_profile',
+    component: EditProfileComponent,
   },
 
   {
