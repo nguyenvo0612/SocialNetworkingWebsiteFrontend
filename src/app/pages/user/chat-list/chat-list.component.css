@@ -1,25 +1,36 @@
+.container {
+  margin-left: 300px;
+}
 .chat-list {
-  max-width: 600px;
-  margin: 0 auto;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  overflow-y: auto;
 }
 
 .chat-item {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .chat-user {
-  font-weight: bold;
+  margin-top: 3px;
+  margin-bottom: 1px;
 }
 
 .chat-message {
-  margin: 5px 0;
+  margin-left: 10px 0;
+  margin-bottom: 3px;
+  color: #999;
 }
 
 .chat-time {
   font-size: 0.8em;
   color: #999;
+}
+
+.chat-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-top: 10px;
 }
