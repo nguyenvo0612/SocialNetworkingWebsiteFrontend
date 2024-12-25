@@ -81,4 +81,13 @@ export class AuthService {
     }
   }
 
+  getAccountId() {
+    const token = localStorage.getItem(this.tokenKey);
+    if (!token) return null;
+    const decodedToken = this.decodeToken(token);
+    if (decodedToken && decodedToken.sub) {
+      return decodedToken.accountId;
+    }
+    return null;
+  }
 }

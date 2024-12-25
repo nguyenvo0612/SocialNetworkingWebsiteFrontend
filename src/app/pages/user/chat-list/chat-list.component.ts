@@ -1,7 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../../service/auth-service';
 
+interface ChatMessage {
+  conversationId: number;
+  partnerName: string;
+  lastMessage: string;
+  lastMessageTime: string;
+  lastMessageSenderId: number;
+}
+ 
 @Component({
   selector: 'app-chat-list',
   standalone: true,
@@ -9,78 +19,32 @@ import { Router } from '@angular/router';
   templateUrl: './chat-list.component.html',
   styleUrl: './chat-list.component.css',
 })
-export class ChatListComponent {
-  chats = [
-    {
-      user: 'Nguyen van a',
-      message: 'Hello!',
-      time: '10:00 AM',
-      avatar:
-        'https://i.pinimg.com/564x/91/1b/88/911b881dd6f2e2e4a55838bf0072bdc1.jpg',
-    },
-    {
-      user: 'Nguyen thi b',
-      message: 'Hi there!',
-      time: '10:01 AM',
-      avatar:
-        'https://i.pinimg.com/564x/91/1b/88/911b881dd6f2e2e4a55838bf0072bdc1.jpg',
-    },
-    {
-      user: 'Nguyen van v',
-      message: 'How are you?',
-      time: '10:02 AM',
-      avatar:
-        'https://i.pinimg.com/564x/91/1b/88/911b881dd6f2e2e4a55838bf0072bdc1.jpg',
-    },
-    {
-      user: 'Nguyen van a',
-      message: 'Hello!',
-      time: '10:00 AM',
-      avatar:
-        'https://i.pinimg.com/564x/91/1b/88/911b881dd6f2e2e4a55838bf0072bdc1.jpg',
-    },
-    {
-      user: 'Nguyen thi b',
-      message: 'Hi there!',
-      time: '10:01 AM',
-      avatar:
-        'https://i.pinimg.com/564x/91/1b/88/911b881dd6f2e2e4a55838bf0072bdc1.jpg',
-    },
-    {
-      user: 'Nguyen van v',
-      message: 'How are you?',
-      time: '10:02 AM',
-      avatar:
-        'https://i.pinimg.com/564x/91/1b/88/911b881dd6f2e2e4a55838bf0072bdc1.jpg',
-    },
-    {
-      user: 'Nguyen van a',
-      message: 'Hello!',
-      time: '10:00 AM',
-      avatar:
-        'https://i.pinimg.com/564x/91/1b/88/911b881dd6f2e2e4a55838bf0072bdc1.jpg',
-    },
-    {
-      user: 'Nguyen thi b',
-      message: 'Hi there!',
-      time: '10:01 AM',
-      avatar:
-        'https://i.pinimg.com/564x/91/1b/88/911b881dd6f2e2e4a55838bf0072bdc1.jpg',
-    },
-    {
-      user: 'Nguyen van v',
-      message: 'How are you?',
-      time: '10:02 AM',
-      avatar:
-        'https://i.pinimg.com/564x/91/1b/88/911b881dd6f2e2e4a55838bf0072bdc1.jpg',
-    },
-  ];
+export class ChatListComponent implements OnInit {
+  chats: ChatMessage[] = [];
+  currentAccountId: number | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient,private authService: AuthService) {}
 
-  selectChat(chat: any) {
+  ngOnInit() {
+    this.currentAccountId = this.authService.getAccountId();
+    this.loadChats();
+  }
+
+  loadChats() {
+    const accountId= this.authService.getAccountId()
+    console.log(accountId);
+    
+    this.http.get<ChatMessage[]>(`http://localhost:8080/api/messages/last-messages/${accountId}`)
+      .subscribe(data => {
+        this.chats = data;
+      });
+  }
+
+  selectChat(chat: ChatMessage) {
     this.router.navigate(['/message-box'], {
-      queryParams: { user: chat.user },
+      queryParams: { conversationId: chat.conversationId },
     });
   }
+
+  
 }

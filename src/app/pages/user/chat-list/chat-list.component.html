@@ -7,12 +7,19 @@
       (click)="selectChat(chat)"
     >
       <div class="col-1">
-        <img src="{{ chat.avatar }}" class="chat-avatar me-2" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeWjgkjRnH1ogBeN-tSZvwfincg-ELdDjTsPvaFxvX9U7DvW8gMORUl4m1Wss-wZRYnDs&usqp=CAU" class="chat-avatar me-2" />
       </div>
       <div class="col-11">
-        <p class="chat-user">{{ chat.user }}</p>
-        <p class="chat-message">{{ chat.message }}</p>
-        <span class="chat-time">{{ chat.time }}</span>
+        <p class="chat-user">{{ chat.partnerName }}</p>
+        <p class="chat-message">
+          <ng-container *ngIf="chat.lastMessageSenderId === currentAccountId; else otherMessage">
+            Bạn: {{ chat.lastMessage }}
+          </ng-container>
+          <ng-template #otherMessage>
+            {{ chat.lastMessage }}
+          </ng-template>
+        </p>
+        <span class="chat-time">{{ chat.lastMessageTime | date:'short' }}</span>
       </div>
     </div>
   </div>
