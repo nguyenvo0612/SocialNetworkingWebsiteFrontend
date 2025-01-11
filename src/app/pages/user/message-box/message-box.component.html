@@ -8,8 +8,11 @@
     
     <div class="messages-container">
       <div *ngFor="let message of messages" 
-           [ngClass]="{'message-right': isCurrentUserMessage(message), 
-                      'message-left': !isCurrentUserMessage(message)}">
+           [ngClass]="{
+             'message-right': isCurrentUserMessage(message),
+             'message-left': !isCurrentUserMessage(message)
+           }"
+           class="message-wrapper">
         <div class="message-content">
           {{ message.content }}
         </div>
@@ -25,8 +28,14 @@
              [(ngModel)]="newMessage" 
              (keyup.enter)="sendMessage()"
              placeholder="Nhập tin nhắn..."
-             class="form-control">
-      <button (click)="sendMessage()" class="btn btn-primary ms-2">Gửi</button>
+             class="form-control"
+             [disabled]="isSending">
+      <button 
+        (click)="sendMessage()" 
+        class="btn btn-primary ms-2"
+        [disabled]="!newMessage.trim() || isSending">
+        {{ isSending ? 'Đang gửi...' : 'Gửi' }}
+      </button>
     </div>
   </div>
 </div>
